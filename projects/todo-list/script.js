@@ -1,6 +1,27 @@
 const todoInput = document.getElementById('todoInput');
 const addBtn = document.getElementById('addBtn');
 const todoList = document.getElementById('todoList');
+const dueDateInput = document.getElementById('dueDateInput');
+const priorityInput = document.getElementById('priorityInput');
+const progressBar = document.getElementById('progressBar');
+const progressText = document.getElementById('progressText');
+const openAddModal = document.getElementById('openAddModal');
+const closeModal = document.getElementById('closeModal');
+const addModal = document.getElementById('addModal');
+
+openAddModal.addEventListener('click', () => {
+    addModal.classList.remove('hidden');
+});
+
+closeModal.addEventListener('click', () => {
+    addModal.classList.add('hidden');
+});
+addModal.addEventListener('click', (e) => {
+    if (e.target === addModal) {
+        addModal.classList.add('hidden');
+    }
+});
+
 
 let todos = JSON.parse(localStorage.getItem('todos')) || [];
 
@@ -12,42 +33,68 @@ function renderTodos() {
     todoList.innerHTML = '';
     todos.forEach((todo, index) => {
         const li = document.createElement('li');
-        li.className = `todo-item ${todo.completed ? 'completed' : ''}`;
+        const priority = todo.priority || 'low';
+        li.className = `todo-item ${todo.completed ? 'completed' : ''} ${priority}`;
         li.innerHTML = `
-            <span class="todo-text">${todo.text}</span>
-            <div class="todo-actions">
-                <button class="complete-btn" onclick="toggleComplete(${index})">
-                    <i class="ri-check-line"></i>
-                </button>
-                <button class="delete-btn" onclick="deleteTodo(${index})">
-                    <i class="ri-delete-bin-line"></i>
-                </button>
-            </div>
+                <div>
+                    <span class="todo-text">${todo.text}</span>
+                    ${todo.dueDate ? `<small>Due: ${todo.dueDate}</small>` : ''}
+                </div>
+                <div class="todo-actions">
+                    <button class="complete-btn" onclick="toggleComplete(${index})">
+                        <i class="ri-check-line"></i>
+                    </button>
+                    <button class="delete-btn" onclick="deleteTodo(${index})">
+                        <i class="ri-delete-bin-line"></i>
+                    </button>
+                </div>
         `;
+
+
         todoList.appendChild(li);
+
     });
+    updateProgress();
+
 }
 
 function addTodo() {
     const text = todoInput.value.trim();
+    const dueDate = dueDateInput.value;
+    const priority = priorityInput.value;
+
     if (text) {
-        todos.push({ text, completed: false });
+        todos.push({
+            text,
+            completed: false,
+            dueDate,
+            priority
+        });
+
         todoInput.value = '';
+        dueDateInput.value = '';
+        priorityInput.value = 'low';
+
         saveTodos();
         renderTodos();
     }
+    addModal.classList.add('hidden');
+
 }
+
 
 function toggleComplete(index) {
     todos[index].completed = !todos[index].completed;
     saveTodos();
     renderTodos();
+
 }
 
 function deleteTodo(index) {
     todos.splice(index, 1);
     saveTodos();
     renderTodos();
+
 }
 
 addBtn.addEventListener('click', addTodo);
@@ -56,3 +103,12 @@ todoInput.addEventListener('keypress', (e) => {
 });
 
 renderTodos();
+
+function updateProgress() {
+    const completed = todos.filter(t => t.completed).length;
+    const total = todos.length;
+    const percent = total ? Math.round((completed / total) * 100) : 0;
+
+    progressBar.style.width = percent + '%';
+    progressText.textContent = `${completed} / ${total} tasks completed`;
+}
