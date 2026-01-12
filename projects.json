@@ -250,6 +250,19 @@
     "coverStyle": "background: #4f46e5; color: white;"
   },
   {
+    "title": "Age Calculator App",
+    "category": "utility",
+    "description": "Calculate your exact age in years, months, and days.",
+    "tech": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "link": "./projects/age-calculator-app/index.html",
+    "icon": "ri-calendar-line",
+    "coverStyle": "background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); color:#78350f;"
+  },
+  {
     "title": "Personal Diary",
     "category": "utility",
     "description": "A personal diary app to write, view, search, and manage daily entries with local data persistence.",
