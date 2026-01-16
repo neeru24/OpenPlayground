@@ -3466,7 +3466,11 @@
     "title": "FlowLogic",
     "category": "Educational",
     "description": "A visual logic builder that allows users to create and connect logic flows using interactive blocks.",
-    "tech": ["HTML", "CSS", "JavaScript"],
+    "tech": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
     "link": "./projects/flowlogic/index.html",
     "icon": "ri-flow-chart",
     "coverStyle": "background: linear-gradient(135deg, #fdf2f8 0%, #fbcfe8 50%, #fae8ff 100%); color: #581c87;"
@@ -3482,6 +3486,25 @@
     "icon": "ri-book-3-line",
     "coverStyle": "background: linear-gradient(135deg, #4E342E 0%, #6D4C41 100%); color: #FFFDF8;"
   },
+  }
+]
+  },
+  {
+  "title": "UI As Enemy",
+  "title": "Micro Journal",
+  "category": "utility",
+  "difficulty": "Intermediate",
+  "description": "A tactile, book-style minimalist journal with interactive date bookmarks and focus-driven Zen Mode.",
+  "tech": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "LocalStorage"
+  ],
+  "link": "./projects/micro journal/index.html",
+  "icon": "ri-book-3-line",
+  "coverStyle": "background: linear-gradient(135deg, #4E342E 0%, #6D4C41 100%); color: #FFFDF8;"
+},
 {
   "title": "Minimal Countdown",
   "category": "utility",
