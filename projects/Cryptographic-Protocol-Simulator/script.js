@@ -341,7 +341,10 @@ class RSAProtocol extends ProtocolBase {
                 break;
 
             case 5: // Alice Encrypts
-                this.msg = 123n; // "Hi" equivalent
+                // Overwrite any initial placeholder message with the actual demo payload.
+                // We use 123n (e.g., a toy numeric encoding of "Hi") as the fixed message for
+                // the remainder of the RSA demo, keeping m < n so the math stays simple.
+                this.msg = 123n;
                 this.ui.log(`Alice wants to send message m=${this.msg}.`, "action");
                 
                 // C = m^e mod n
