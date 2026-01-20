@@ -439,7 +439,18 @@ class Engine {
 
         // Simple collision warning
         const warn = document.getElementById('collision-warn');
-        if (worldMap[Math.floor(this.posX + this.dirX)][Math.floor(this.posY + this.dirY)] > 0) {
+        const nextX = Math.floor(this.posX + this.dirX);
+        const nextY = Math.floor(this.posY + this.dirY);
+
+        let collisionAhead = false;
+        if (
+            nextX >= 0 && nextX < CONFIG.mapWidth &&
+            nextY >= 0 && nextY < CONFIG.mapHeight
+        ) {
+            collisionAhead = worldMap[nextX][nextY] > 0;
+        }
+
+        if (collisionAhead) {
             warn.classList.remove('hidden');
         } else {
             warn.classList.add('hidden');
