@@ -3,7 +3,13 @@
 // ===============================
 
 import { ProjectVisibilityEngine } from "./core/projectVisibilityEngine.js";
-import { keyevents } from "./core/Shortcut.js"
+import { keyevents } from "./core/Shortcut.js";
+import { codePlayground } from "./core/codePlayground.js";
+
+// Expose openCodePlayground globally for card buttons
+window.openCodePlayground = function(project) {
+    codePlayground.open(project);
+};
 
 class ProjectManager {
     constructor() {
